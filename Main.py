@@ -18,13 +18,5 @@ if __name__ == '__main__':
     password = sys.argv[2] if sys.argv.__len__() >= 2 is not None else input('password : ')
 
     j = JiraAdaptor(acc, password)
-    print('Successfully logged in as user : {}'.format(acc))
+    m = BaseInventory.MenuOperator(BaseInventory.QueryMenu)
 
-    print('have due             -------')
-    print_bugs(j.have_due())
-    print('no due               -------')
-    print_bugs(j.no_due())
-    print('pass due             -------')
-    print_bugs(j.pass_due())
-    print('Recently Resolved    -------')
-    print_bugs(j.recently_resolved())
