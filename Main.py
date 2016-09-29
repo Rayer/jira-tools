@@ -17,6 +17,6 @@ if __name__ == '__main__':
     acc = sys.argv[1] if sys.argv.__len__() >= 2 is not None else input('Account name : ')
     password = sys.argv[2] if sys.argv.__len__() >= 2 is not None else input('password : ')
 
-    # j = JiraAdaptor(acc, password)
-    m = Menu.MenuOperator(Menu.MainMenu)
+    j = JiraAdaptor(acc, password)
+    m = Menu.MenuOperator(Menu.MainMenu, j)
 
