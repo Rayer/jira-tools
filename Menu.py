@@ -49,9 +49,18 @@ class QueryMenu(BaseInventory):
         super().__init__(context)
 
     def item_callback_list(self):
-        return [('No due', self.exit),
-                ('Pass Due', self.exit),
-                ('Have Due', self.exit)]
+        return [('No due', self.no_due),
+                ('Pass Due',self.pass_due),
+                ('Have Due', self.have_due)]
+
+    def no_due(self):
+        print(self.context.jira.no_due())
+
+    def pass_due(self):
+        print(self.context.jira.pass_due())
+
+    def have_due(self):
+        print(self.context.jira.have_due())
 
     def exit(self):
         pass
