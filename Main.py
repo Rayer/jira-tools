@@ -7,11 +7,6 @@ import Menu
 try: input = raw_input
 except NameError: pass
 
-def print_bugs(bugs):
-    for jira_entry in bugs['issues']:
-        print('{} : {}({})'.format(jira_entry['key'], jira_entry['fields']['summary'], jira_entry['fields']['duedate']))
-
-
 if __name__ == '__main__':
     bucket = set()
     acc = sys.argv[1] if sys.argv.__len__() >= 2 is not None else input('Account name : ')

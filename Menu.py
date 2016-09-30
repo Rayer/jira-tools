@@ -26,10 +26,18 @@ class BaseInventory:
     def back_previous(self):
         self.context.back_previous()
 
+    def print_bugs(self, bugs):
+        for jira_entry in bugs['issues']:
+            print('{} : {}({})'.format(jira_entry['key'], jira_entry['fields']['summary'],
+                                       jira_entry['fields']['duedate']))
+
+    def print_single_bug(self, bug):
+        pass
+
 
 class MainMenu(BaseInventory):
     def __init__(self, context):
-        super().__init__(context)
+        super(MainMenu, self).__init__(context)
 
     def item_callback_list(self):
         return [('Query', QueryMenu),
@@ -46,7 +54,7 @@ class MainMenu(BaseInventory):
 
 class QueryMenu(BaseInventory):
     def __init__(self, context):
-        super().__init__(context)
+        super(QueryMenu, self).__init__(context)
 
     def item_callback_list(self):
         return [('No due', self.no_due),
@@ -54,13 +62,13 @@ class QueryMenu(BaseInventory):
                 ('Have Due', self.have_due)]
 
     def no_due(self):
-        print(self.context.jira.no_due())
+        self.print_bugs(self.context.jira.no_due())
 
     def pass_due(self):
-        print(self.context.jira.pass_due())
+        self.print_bugs(self.context.jira.pass_due())
 
     def have_due(self):
-        print(self.context.jira.have_due())
+        self.print_bugs(self.context.jira.have_due())
 
     def exit(self):
         pass
@@ -68,7 +76,7 @@ class QueryMenu(BaseInventory):
 
 class BucketMenu(BaseInventory):
     def __init__(self, context):
-        super().__init__(context)
+        super(BucketMenu, self).__init__(context)
 
     def item_callback_list(self):
         return [('Add issue to bucket', self.add_to_bucket),
