@@ -58,17 +58,21 @@ class QueryMenu(BaseInventory):
 
     def item_callback_list(self):
         return [('No due', self.no_due),
-                ('Pass Due',self.pass_due),
+                ('Pass Due', self.pass_due),
                 ('Have Due', self.have_due)]
 
     def no_due(self):
-        self.print_bugs(self.context.jira.no_due())
+        entries = self.context.jira.no_due()
+        self.print_bugs(entries)
+        self.context.invoke_menu(BucketMenu)
 
     def pass_due(self):
         self.print_bugs(self.context.jira.pass_due())
+        self.context.invoke_menu(BucketMenu)
 
     def have_due(self):
         self.print_bugs(self.context.jira.have_due())
+        self.context.invoke_menu(BucketMenu)
 
     def exit(self):
         pass
@@ -79,17 +83,21 @@ class BucketMenu(BaseInventory):
         super(BucketMenu, self).__init__(context)
 
     def item_callback_list(self):
-        return [('Add issue to bucket', self.add_to_bucket),
-                ('Remove issue from bucket', self.remove_from_bucket),
-                ('Remove all issues in bucket', self.remove_all_bucket)]
+        return [('Add issue to bucket', self.add_one),
+                ('Add all issues to bucket', self.add_all),
+                ('Remove issue from bucket', self.remove_one),
+                ('Remove all issues in bucket', self.remove_all)]
 
-    def add_to_bucket(self):
+    def add_one(self):
         pass
 
-    def remove_from_bucket(self):
+    def add_all(self):
         pass
 
-    def remove_all_bucket(self):
+    def remove_one(self):
+        pass
+
+    def remove_all(self):
         pass
 
 

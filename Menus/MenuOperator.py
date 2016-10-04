@@ -21,7 +21,7 @@ class MenuOperator:
             callback = item_callback[index]
             print(type(callback))
             if inspect.isclass(callback):
-                self.history_stack.append(callback(self))
+                self.invoke_menu(callback)
                 continue
 
             if callable(callback):
@@ -34,8 +34,8 @@ class MenuOperator:
     def back_previous(self):
         self.history_stack.pop()
 
-    def invoke_menu(self, menu, key):
-        pass
+    def invoke_menu(self, menu):
+        self.history_stack.append(menu(self))
 
     def process_input(self):
         pass
