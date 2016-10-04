@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-from jira import JiraAdaptor
 import sys
-import Menu
+
+from Menus import MenuOperator, Menu
+from jira import JiraAdaptor
 
 #For Python 2.7 compitible
 try: input = raw_input
@@ -13,5 +14,5 @@ if __name__ == '__main__':
     password = sys.argv[2] if sys.argv.__len__() >= 2 is not None else input('password : ')
 
     j = JiraAdaptor(acc, password)
-    m = Menu.MenuOperator(Menu.MainMenu, j)
+    m = MenuOperator.MenuOperator(Menu.MainMenu, j)
 
